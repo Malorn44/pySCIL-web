@@ -1,0 +1,690 @@
+{
+    "services": {
+        "TaskControl": {
+            "settings": {
+
+            },
+            "subservices": {
+                "DirectiveIndex": {
+                    "short": "DI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "ProcessManagementIndex": {
+                    "short": "PMI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "ProcessManagementSuccessIndex": {
+                    "short": "PMSI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            } 
+        },
+        "TopicControl": {
+            "settings": {
+
+            },
+            "subservices": {
+                "LocalTopicIntroduction": {
+                    "short": "LTI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "SubsequentMentionsLocalTopics": {
+                    "short": "SMT",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "CiteScore": {
+                    "short": "CS",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "TurnLength": {
+                    "short": "TL",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            } 
+        },
+        "ArgumentDiversity": {
+            "settings": {
+
+            },
+            "subservices": {
+                "VocabularyRangeIndex": {
+                    "short": "VRI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "VocabularyIntroductionMeasure": {
+                    "short": "VIM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "Agreement": {
+            "settings": {
+
+            },
+            "subservices": {
+                "AgreeAcceptIndex": {
+                    "short": "ATX",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "TopicalAgreementIndex": {
+                    "short": "TAX",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "Disagreement": {
+            "settings": {
+
+            },
+            "subservices": {
+                "DisagreeRejectIndex": {
+                    "short": "DRX",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }           
+                },
+                "TopicalDisagreementIndex": {
+                    "short": "TDX",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "Involvement": {
+            "settings": {
+
+            },
+            "subservices": {
+                "NounPhraseIndex": {
+                    "short": "NPI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "TurnIndex": {
+                    "short": "TI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "TopicChainIndex": {
+                    "short": "TCI",
+                    "settings": {
+                        "gapSizeCutoff": {
+                            "default": 10,
+                            "type": "number"
+                        },
+                        "mentionPercentageFloor": {
+                            "default": 0.05,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        },
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "AllSubsequentMentions": {
+                    "short": "ASM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "AllotopicalityIndex": {
+                    "short": "ATP",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "EmotiveLanguageUse": {
+            "subservices": {
+                "EmotiveWordIndex": {
+                    "short": "EWI"
+                }
+            }
+        },
+        "TensionFocus": {
+            "loc": 1,
+            "settings": {
+
+            },
+            "subservices": {
+                "DisagreeRejectTargetIndex": {
+                    "short": "DRT",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "TopicalDisagreementTargetIndex": {
+                    "short": "TDT",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "TaskFocus": {
+            "loc": 1,
+            "settings": {
+                "gapSizeCutoff": {
+                    "default": 10,
+                    "type": "number"
+                },
+                "mesoTopicLengthFloor": {
+                    "default": 3,
+                    "type": "number"
+                }
+            },
+            "subservices": {
+                "MesotopicStructureMeasure": {
+                    "short": "MSM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "MesotopicGappingMeasure": {
+                    "short": "MGM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "Sociability": { 
+            "loc": 1,
+            "settings": {
+
+            },
+            "subservices": {
+                "ConversationalNormsMeasure": {
+                    "short": "CNM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "AgreementDisagreementMeasure": {
+                    "short": "ADM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "NetworkDensityIndex": {
+                    "short": "NDI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "CiteDisparityIndex": {
+                    "short": "CDI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "NetworkCentrality": {
+            "loc": 1,
+            "settings": {
+
+            },
+            "subservices": {
+                "CommunicationLinksMeasure": {
+                    "short": "CLM",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "CitationRateIndex": {
+                    "short": "CRI",
+                    "settings": {
+                        "weight": {                            
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "MesoTopicIntroduction": {
+                    "short": "MTI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "TopicalPositioning": {
+            "loc": 1,
+            "subservices": {
+                "TopicalPolarityIndex": {
+                    "short": "TPX"
+                },
+                "PolarityStrengthIndex": {
+                    "short": "PSX"
+                }
+            }
+        },
+        "SocialPositioning": {
+            "loc": 1,
+            "settings": {
+
+            },
+            "subservices": {
+                "OfferCommitIndex": {
+                    "short": "OCI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                },
+                "ConfirmationRequestIndex": {
+                    "short": "CRI",
+                    "settings": {
+                        "weight": {
+                            "default": 1,
+                            "type": "number",
+                            "step": "any",
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                }
+            }
+        },
+        "Leadership": {
+            "requires": ["TopicControl", "TaskControl", "Involvement", "Disagreement"],
+            "loc": 1,
+            "settings": {
+                "topicControlWeight": {
+                    "default": 0.45,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "taskControlWeight": {
+                    "default": 0.4,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "involvementWeight": {
+                    "default": 0.01,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "disagreementWeight": {
+                    "default": 0.1,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                }
+            }
+        },
+        "Influencer": {
+            "requires": ["ArgumentDiversity", "NetworkCentrality", "TopicControl", "Disagreement"],
+            "loc": 1,
+            "settings": {
+                "argumentDiversityWeight": {
+                    "default": 0.4,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "networkCentralityWeight": {
+                    "default": 0.5,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "topicControlWeight": {
+                    "default": 0.75,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "disagreementWeight": {
+                    "default": 0.15,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                }
+            }
+        },
+        "PursuitOfPower": {
+            "requires": ["TopicControl", "Disagreement", "TensionFocus", "NetworkCentrality"],
+            "loc": 1,
+            "settings": {
+                "topicControlWeight": {
+                    "default": 0.8,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "disagreementWeight": {
+                    "default": 0.09,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "tensionFocusWeight": {
+                    "default": 0.02,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                },
+                "networkCentralityWeight": {
+                    "default": 0.09,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "weights"
+                }
+            }
+        },
+        "GroupCohesion": {
+            "requires": ["TopicControl", "TaskControl", "Involvement", "Agreement", "Disagreement", "Sociability", "TaskFocus"],
+            "loc": 1,
+            "settings": {
+                "sociabilityThreshold": {
+                    "default": 0.68,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1
+                },
+                "taskFocusThreshold": {
+                    "default": 0.32,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1
+                },
+                "dpmThreshold": {
+                    "default": 0.69,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1
+                },
+                "prmThreshold": {
+                    "default": 0.75,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1
+                },
+                "prmMesoTopicFloor": {
+                    "default": 3,
+                    "type": "number"
+                },
+                "prmDialogueFloor": {
+                    "default": 150,
+                    "type": "number"
+                },
+                "prmTopicControlWeight": {
+                    "default": 1,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "prmWeights"
+                },
+                "prmTaskControlWeight": {
+                    "default": 0.9,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "prmWeights"
+                },
+                "prmInvolvementWeight": {
+                    "default": 0.3,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "prmWeights"
+                },
+                "prmAgreementWeight": {
+                    "default": 0.7,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "prmWeights"
+                },
+                "prmDisagreementWeight": {
+                    "default": 0.7,
+                    "type": "number",
+                    "step": "any",
+                    "min": 0,
+                    "max": 1,
+                    "array": "prmWeights"
+                }
+            }
+        }
+    }
+}

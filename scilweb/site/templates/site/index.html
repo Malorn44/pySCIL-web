@@ -1,0 +1,278 @@
+
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+    SCIL Toolset
+{% endblock %}
+
+{% block content %}
+<html>
+    <head>
+
+    </head>
+
+    <html>
+    <head>
+
+    </head>
+
+    <body>
+            
+
+        <div class="header">
+            <img class="header-image" src="{{ url_for('site.static', filename='rpi-logo-black.png')}}" alt="RPI logo"/>
+            <h3>LACAI Lab | SCIL Toolset</h3>
+        </div>
+
+        <form action="{{ url_for('site.form_submit')}}" id=scilForm method="POST" enctype="multipart/form-data">
+            
+            <input type="file" id="file" name="file" required>
+            <div title="Choose which Part of Speech tagger SCIL will use to find topics.">
+                POS Tagger: 
+                <input id="stanfordRadio" type="radio" name="mode" value="stanford" checked> <span id="stanford">Stanford</span> </input> 
+                <input id="nltkRadio" type="radio" name="mode" value="nltk"> <span id="nltk">NLTK</span> </input>
+            </div>
+            <div>
+                <a href='#' data-toggle='modal' data-target='#GlobalConfig'>[Global Config]</a>
+            </div>
+            <div class="wrapper">
+                <div class="checkbox-wrapper">
+                    {% include 'site/checkboxes.html' %}
+                </div>
+                <div class="button-wrapper" id="buttonWrapper">
+                    <input type="hidden" id="state" name="value"/>
+                    <input type="button" class="btn btn-primary" id="run" value="Run SCIL" />
+                    <input type="button" class="btn btn-primary" id="runSave" value="Run and Save" />
+                    <input type="button" class="btn btn-secondary" id="selectAll" value="Select All" />
+                    <input type="button" class="btn btn-secondary" id="deselectAll" value="Deselect All" />
+                    <div class="dropdown div-inline">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Save Config <span class="caret">
+                        </button>
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <ul class="no-padding">
+                                <li> <a class="btn dropdown-item no-margin" id="saveConfig">Save Config</a> </li>
+                                <li> <a class="btn dropdown-item" id="saveConfigCheck">Save Config & Checkboxes</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <input type="file" id="fileConfig" style="display: none;" />
+                    <input type="button" class="btn btn-secondary" id="loadConfig" value="Load Config" />
+                    <input type="button" class="btn btn-warning" id="resetConfig" value="Reset Config" />
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('site.static', filename='style.css')}}">
+<script src="{{ url_for('site.static', filename='FileSaver.min.js')}}"></script>
+
+
+<script type="text/javascript">
+    function displayError(modal) {
+        errorDiv = modal.find(".modal-error")
+        errorDiv.animate({
+            height: '+=72px'
+        }, 300);
+        $("<div class='alert alert-warning'>" +
+            "<b> Warning! </b> Please fix invalid field(s)</div>").hide().appendTo(errorDiv).fadeIn(500);
+        errorDiv.find(".alert").delay(4000).fadeOut(
+            "normal",
+            function() {
+                $(this).remove();
+            }
+        );
+        errorDiv.delay(4500).animate({
+            height: '-=72px'
+        }, 300);
+    }
+
+    function validate() {
+        // manually call check validity function
+        if (!$("[name='file']")[0].checkValidity()) {
+            $("[name='file']").focus();
+            $("[name='file']")[0].reportValidity();
+            return false;
+        }
+        isValid = true;
+        $(".modal").each(function() {
+            var modal = $(this)
+            modal.find("input").each(function() {
+                if (!$(this)[0].checkValidity()) {
+                    modal.modal('toggle');
+                    displayError(modal);
+                    isValid = false;
+                    return false;
+                }
+            });
+            if (!isValid) {
+                return false;
+            }
+        });
+        return isValid;
+    }
+
+
+    $("#stanford").click(function() {
+        $("#stanfordRadio").click();
+    });
+    $("#nltk").click(function() {
+        $("#nltkRadio").click();
+    });
+    $("#run").on('click', function(e) {
+        if (validate()) {
+            $('#state').attr('name', 'run')
+            $("#scilForm").submit();
+        }
+    });
+    $("#runSave").on('click', function(e) {
+        if (validate()) {
+            $('#state').attr('name', 'runSave')
+            $("#scilForm").submit();
+        }
+    });
+    $("#selectAll").click(function() {
+        $('input:checkbox').prop({
+            indeterminate: false,
+            checked: true
+        }).change();
+    });
+    $("#deselectAll").click(function() {
+        $('input:checkbox').prop({
+            indeterminate: false,
+            checked: false
+        }).change();
+    });
+    $("#saveConfig").click(function() {
+        var text = "";
+        if ($("#stanfordRadio").is(":checked")) {
+            text += "stanfordRadio:1\nnltkRadio:0\n"
+        } else {
+            text += "stanfordRadio:0\nnltkRadio:1\n"
+        }
+        $("input[id^=cfg]").each(function() {
+            text += this.id + ":" + this.value + "\n";
+        });
+        var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "scil_config.cfg");
+    });
+    $("#saveConfigCheck").click(function() {
+        var text = "";
+        var text = "";
+        if ($("#stanfordRadio").is(":checked")) {
+            text += "stanfordRadio:1\nnltkRadio:0\n"
+        } else {
+            text += "stanfordRadio:0\nnltkRadio:1\n"
+        }
+        $("input[id^=chb]").each(function() {
+            text += this.id + ":";
+            if (this.indeterminate) {
+                text += "2";
+            } else if (this.checked) {
+                text += "1";
+            } else {
+                text += "0";
+            }
+            text += "\n";
+        });
+        $("input[id^=cfg]").each(function() {
+            text += this.id + ":" + this.value + "\n";
+        });
+        var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "scil_config.cfg");
+    });
+
+    $("#loadConfig").click(function() {
+        $("#fileConfig").click();
+    });
+
+    $("#fileConfig").change(function(event) {
+        const input = event.target;
+        if ('files' in input && input.files.length > 0) {
+            readFileContent(input.files[0]).then(content => {
+                var lines = content.split('\n');
+                for (var i = 0; i < lines.length; i++) {
+                    if (lines[i].indexOf(':') > -1) {
+                        var [id, val] = lines[i].split(':');
+                        if (id.startsWith("cfg")) {
+                            $("input[id="+id+"]").val(val);
+                        } else if (id.startsWith("chb")) {
+                            if (val == "0") {
+                                $("input[id="+id+"]").prop({
+                                    indeterminate: false,
+                                    checked: false
+                                });
+                            } else if (val == "1") {
+                                $("input[id="+id+"]").prop({
+                                    indeterminate: false,
+                                    checked: true
+                                });
+                            } else if (val == "2") {
+                                $("input[id="+id+"]").prop({
+                                    indeterminate: true,
+                                    checked: false
+                                });
+                            }
+                        } else {
+                            if (id=="stanfordRadio") {
+                                if (val == 1) {
+                                    $("#"+id).click();
+                                }
+                            } else {
+                                if (val == 1) {
+                                    $("#"+id).click();
+                                }
+                            }
+                        }
+                    }
+                }
+                alert("Success! Config Loaded");
+            }).catch(error => console.log(error));
+        }
+    });
+
+    function readFileContent(file) {
+        const reader = new FileReader();
+        return new Promise((resolve, reject) => {
+            reader.onload = event => resolve(event.target.result);
+            reader.onerror = error => reject(error);
+            reader.readAsText(file);
+        });
+    }
+
+    $("#resetConfig").click(function() {
+        var answer = window.confirm("This will reset all config options to their default values. Proceed?");
+        if (answer) {
+            $.getJSON( "site/services.json", function( data ) {
+                for (const service in data['services']) {
+                    if (data['services'][service]['settings']) {
+                        for (const setting in data['services'][service]['settings']) {
+                            var id = "cfg_" + service + "_" + setting;
+                            $("input[id="+id+"]").val(data['services'][service]['settings'][setting]['default']);
+                        }
+                        subservices = data['services'][service]['subservices'];
+                        for (const subservice in subservices) {
+                            if (subservices[subservice]['settings']) {
+                                for (const setting in subservices[subservice]['settings']) {
+                                    var id = "cfg_" + service + "_" + subservice + "_" + setting;
+                                    $("input[id="+id+"]").val(subservices[subservice]['settings'][setting]['default']);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            $("#stanfordRadio").click();
+            $("#cfg_Global_topicThreshold").val(2);
+            $("#cfg_Global_mesoTopicThreshold").val(10);
+            alert("Success! Config reset to default values")
+        }
+    });
+</script>
+
+{% endblock %}
