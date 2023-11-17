@@ -1,5 +1,5 @@
 # pySCIL-Web
-A web interface for the pySCIL toolset. For more information on pySCIL, view it's [github repository](https://github.rpi.edu/LACAI/pySCIL).
+A web interface for the pySCIL toolset. For more information on pySCIL, view it's [github repository](https://github.com/Malorn44/pySCIL).
 
 # How to Run
 ## Running with gunicorn
